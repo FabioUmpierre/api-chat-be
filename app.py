@@ -5,7 +5,7 @@ from resources.usersearch import UserSearch
 from resources.userlist import UserList
 from resources.usercrud import UserCrud
 from resources.contacts import ContactCreate, ContactSearch
-from models.messages import MessageCrud
+from resources.messages import MessageCrud
 from models import db
 
 app = Flask(__name__)
