@@ -1,3 +1,4 @@
+from typing import Union
 from . import db
 from models.user import UserModel
 
@@ -18,6 +19,13 @@ class ContactsModel(db.Model):
             k: str(v) for k, v in self.__dict__.items()
             if k != '_sa_instance_state'
         }
+        
+    @classmethod
+    def get_relationship(cls, userId, contactUserId):
+        return cls.query.filter_by(
+            userId=userId,
+            contactUserId=contactUserId
+        ).first()
 
     @classmethod
     def select_all_user_contacts(cls, user_id):

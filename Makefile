@@ -51,3 +51,9 @@ venv: venv-clear
 .PHONY: venv-clear
 venv-clear:
 	rm -rf ${VENVDIR}
+
+ssh-deploy:
+	ssh umpierre 'cd ~/api-chat-be && git pull && make gunicorn-restart'
+
+ssh-deploy-status:
+	ssh umpierre 'cd ~/api-chat-be && make list-ports && make gunicorn-status'
