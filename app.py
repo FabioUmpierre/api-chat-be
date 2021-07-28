@@ -19,12 +19,15 @@ CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 def create_db():
     db.create_all()
 
+
 api.add_resource(UserList, '/user')
 api.add_resource(UserCrud, '/user/<int:id>')
 api.add_resource(UserSearch, '/user/search/<string:name>')
 api.add_resource(ContactSearch, '/user/<int:user_id>/contacts')
-api.add_resource(ContactCreate, '/user/<int:userId>/contact/<int:contactUserId>')
-api.add_resource(MessageCrud,'/user/<int:loggedUserId>/contacts/<int:contactUserId>/messages')
+api.add_resource(
+    ContactCreate, '/user/<int:userId>/contact/<int:contactUserId>')
+api.add_resource(
+    MessageCrud, '/user/<int:loggedUserId>/contacts/<int:contactUserId>/messages')
 
 db.init_app(app)
 
