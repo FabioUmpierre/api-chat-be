@@ -33,7 +33,7 @@ class UserModel(db.Model):
         return cls.query.filter_by(name=name).first() or None
 
     @classmethod
-    def find_user(cls, id):
+    def find_by_id(cls, id):
         return cls.query.filter_by(id=id).first() or None
 
     @classmethod

@@ -27,7 +27,7 @@ api.add_resource(ContactSearch, '/user/<int:user_id>/contacts')
 api.add_resource(
     ContactCreate, '/user/<int:userId>/contact/<int:contactUserId>')
 api.add_resource(
-    MessageCrud, '/user/<int:loggedUserId>/contacts/<int:contactUserId>/messages')
+    MessageCrud, '/user/<int:logged_user_id>/contacts/<int:contact_user_id>/messages')
 
 db.init_app(app)
 
