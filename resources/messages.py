@@ -24,7 +24,7 @@ class MessageCrud(Resource):
         return {"error": "unable to save message"}, 500
 
     def get(self, logged_user_id, contact_user_id):
-        logged_user = UserModel.find_by_id(contact_user_id)
+        contact_user = UserModel.find_by_id(contact_user_id)
 
         logged_user_messages = MessageModel.get_messages(
             userId=logged_user_id,
@@ -38,14 +38,14 @@ class MessageCrud(Resource):
             response = [
                 {
                     **x.json(), 
-                    'sentByUserId': logged_user_id, 
-                    'imageUrl': logged_user.imageUrl
+                    'sentByUserId': logged_user_id,
+                    'imageUrl': contact_user.imageUrl          
                 } 
                 for x in logged_user_messages
             ]
             response.extend(
                 [
-                    {**x.json(), 'sentByUserId': contact_user_id}
+                    {**x.json(), 'sentByUserId': contact_user_id,'imageUrl': contact_user.imageUrl}
                     for x in contact_user_messages
                 ]
             )
