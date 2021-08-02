@@ -13,6 +13,7 @@ class UserCrud(Resource):
     def delete(self, id):
         user = UserModel.find_by_id(id)
         if user:
+            # TODO: first delete all contact relationaship that uses this user id
             user.delete_user()
             return {'message': 'User deleted.'}
         return {'message': 'User not found.'}, 404

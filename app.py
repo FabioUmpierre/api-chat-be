@@ -31,5 +31,13 @@ api.add_resource(
 
 db.init_app(app)
 
+if 'sqlite' in app.config['SQLALCHEMY_DATABASE_URI']:
+    def _fk_pragma_on_connect(dbapi_con, con_record):  # noqa
+        dbapi_con.execute('pragma foreign_keys=ON')
+
+    with app.app_context():
+        from sqlalchemy import event
+        event.listen(db.engine, 'connect', _fk_pragma_on_connect)
+
 if __name__ == '__main__':
     app.run(debug=True)
