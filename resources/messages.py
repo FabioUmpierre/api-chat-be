@@ -50,7 +50,7 @@ class MessageCrud(Resource):
                 ]
             )
             response.sort(key=lambda x: datetime.datetime.strptime(
-                x['sendTime'], '%Y-%m-%d %H:%M:%S')
+                x['sendTime'], '%Y-%m-%d %H:%M:%S'),reverse=True
             )
 
             return response
